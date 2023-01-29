@@ -1,0 +1,31 @@
+name: ci/cd
+on: 
+  push: 
+    branches: [ main ] 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Build & Deploy
+        uses: actions/setup-node@v3.6.0
+      - run: npm install
+      - run: npm run build
+      - name: SCP
+        uses: appleboy/scp-action@v0.0.1
+        with: 
+          host: ${{ HOST }}
+          username: ${{ USERNAME }}
+          password: ${{ PASSWORD}}
+          port: 22
+          source: 'docs/'
+          target: ''
+      
+
+        
+      
+  
+
