@@ -24,6 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
               next: HttpHandler): Observable<HttpEvent<any>> {
 
         const idToken = localStorage.getItem("access_token");
+        console.log(idToken)
         let newReq = req;
         if (idToken) {
             const cloned = req.clone({
@@ -68,7 +69,7 @@ export class AuthInterceptor implements HttpInterceptor {
     ){}
 
     ngOnInit() {
-        this.message = this.data.message
+        this.message = this.data.message || "Unknow error"
     }
     close() {
       this.dialogRef.close();

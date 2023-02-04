@@ -26,6 +26,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort'
 
 import { AdminLoginComponent } from './components/user/admin-login/admin-login.component';
 import { UsersInfoComponent } from './components/user/users-info/users-info.component';
@@ -60,6 +62,8 @@ import { AuthInterceptor, DialogFail } from './interceptors/auth.interceptor';
     MatCheckboxModule,
     MatButtonToggleModule,
     MatDialogModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [
     {

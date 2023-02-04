@@ -56,14 +56,11 @@ export class AdminLoginComponent {
           
           const decoded = this.jwtHelper.decodeToken(token);
           const userId = decoded.id;
-          localStorage.setItem("currentUser", userId);
+          localStorage.setItem("currentAdmin", userId);
 
           this.router.navigate(['/users-info'])
         }
-        else {
-          alert(res.message);
-          
-        }
+       
       })
     }
     
@@ -82,10 +79,7 @@ export class AdminLoginComponent {
 
           
         }
-        else {
-          alert(res.message);
-          
-        }
+
       })
     }
   }

@@ -23,17 +23,12 @@ export class TodoService {
     this.getTodos();
   }
 
-  errorHandler(error: HttpErrorResponse){
-    return observableThrowError(()=> new Error(error.message || 'Unknown error'));
-  };
 
   getTodos() {
 
     this.httpClient.get(baseUrl+'todo/user' + localStorage.getItem("currentUser"))
-    .pipe(catchError(this.errorHandler))
     .subscribe((res: any)=>{
       this.todos=res;
-      console.log(this.todos);
     })
   };
 
@@ -46,7 +41,6 @@ export class TodoService {
       title: todoTitle,
       userId: localStorage.getItem('currentUser')
     })
-      .pipe(catchError(this.errorHandler))
       .subscribe((res: any)=>{
         this.todos.push({
           id: res.id,
@@ -76,7 +70,6 @@ export class TodoService {
       title: todo.title,
       completed: todo.completed
     })
-      .pipe(catchError(this.errorHandler))
       .subscribe(res=>{
       })
   }
@@ -89,7 +82,6 @@ export class TodoService {
   deleteTodo(id: number): void {
 
     this.httpClient.delete(baseUrl+"todo/"+id)
-      .pipe(catchError(this.errorHandler))
       .subscribe(res=>{
         this.todos = this.todos.filter(todo => todo.id !== id);
       })
@@ -114,7 +106,6 @@ export class TodoService {
     this.httpClient.post(baseUrl+"todo/deleteCompleted", {
       todos: completed
     })
-    .pipe(catchError(this.errorHandler))
     .subscribe(res=>{
       this.todos = this.todos.filter(todo => !todo.completed);
     })

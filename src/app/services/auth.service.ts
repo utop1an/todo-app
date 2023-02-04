@@ -39,9 +39,9 @@ export class AuthService {
   }
 
   adminLogOut(){
-    localStorage.removeItem("access_token_admin");
+    localStorage.removeItem("access_token");
     localStorage.removeItem("currentAdmin")
-    this.router.navigate(["/adminLogin"])
+    this.router.navigate(["/admin-login"])
   }
 
 
