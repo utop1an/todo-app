@@ -1,0 +1,37 @@
+<mat-toolbar color="primary">
+  <span class="flex-expand"></span>
+  <button mat-flat-button  (click)="authService.logOut()">Log out</button>
+</mat-toolbar>
+<img class="logo" alt="Todo Logo" src="assets/logo.png">
+
+<mat-form-field style="width: 100%;">
+  <mat-label>What needs to be done...</mat-label>
+  <input matInput type="text" [(ngModel)]="todoTitle" class="todo-input" placeholder="Presss enter to add..." (keyup.enter)="addTodo()">
+  <button *ngIf="todoTitle" matSuffix mat-icon-button (click)="addTodo()" style="margin-right: 10px;" color="primary">
+    <mat-icon>done_outline</mat-icon>
+  </button>
+</mat-form-field>
+
+<todo-item 
+    *ngFor="let todo of todoService.todosFiltered()"
+    @fade
+    [todo]="todo"></todo-item>
+
+<!-- <div class="extra-container">
+  <div><label><input type="checkbox" (change)="checkAllTodos()"  [(ngModel)]="!anyRemainingModel"> Check All</label></div>
+  <div>{{ remaining() }} items left</div>
+</div> -->
+
+<div class="extra-container">
+  
+  <mat-button-toggle-group appearance="legacy" [(ngModel)]="todoService.filter">
+    <mat-button-toggle value="all">All</mat-button-toggle>
+    <mat-button-toggle value="active">Active</mat-button-toggle>
+    <mat-button-toggle value="completed">Completed</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <div *ngIf="todoService.atLeastOneCompleted()" style="margin-right: 10px;">
+    <button mat-raised-button (click)="todoService.clearCompleted()" color="primary">Clear Completed</button>
+  </div>
+
+</div>

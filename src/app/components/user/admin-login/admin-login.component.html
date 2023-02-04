@@ -1,0 +1,78 @@
+<mat-toolbar color="primary">
+    <span class="flex-expand"></span>
+    <button mat-flat-button (click)="toUser()">User</button>
+  </mat-toolbar>
+  
+  <div fxLayoutAlign="center center" fxFlexFill>
+      <mat-card fxFlex="20" *ngIf="login==true">
+        <mat-card-header fxLayoutAlign="center center" style="padding: 20px;" fxLayout="column" >
+          <mat-card-title>TODO APP</mat-card-title>  
+          <img class="small_logo" alt="Todo Logo" src="assets/logo.png">
+          
+        </mat-card-header>
+        <mat-toolbar color="primary">Login</mat-toolbar>
+          <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+              <mat-form-field class="form-item" >
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" >
+              </mat-form-field>
+            
+              <mat-form-field class="form-item" >
+                <mat-label>Password</mat-label>
+                <input matInput  [type]="hidepwd ? 'password' : 'text'"  formControlName="password"  >
+                <button mat-icon-button matSuffix (click)="hidepwd = !hidepwd" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidepwd">
+                  <mat-icon>{{hidepwd ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+  
+              </mat-form-field>
+
+              
+  
+              <button mat-raised-button type="submit" class="submit-button"  >Login</button>
+            </form>
+            
+      <mat-card-actions class="card-actions">
+        <button mat-button matSuffix (click)="login = !login" color="primary" >Sign up</button>
+      </mat-card-actions>
+  
+      </mat-card>
+  
+      <mat-card fxFlex="20" *ngIf="login==false">
+        <mat-card-header fxLayoutAlign="center center" style="padding: 20px; " >
+          <mat-card-title >TODO APP</mat-card-title>        
+        </mat-card-header>
+        <mat-toolbar color="primary">Sign up</mat-toolbar>
+          <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+              <mat-form-field class="form-item">
+                <mat-label>Username</mat-label>
+                <input matInput  formControlName="username"  >
+              </mat-form-field>
+            
+              <mat-form-field class="form-item" >
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hidepwd ? 'password' : 'text'" matInput formControlName="password"  >
+                <button mat-icon-button matSuffix (click)="hidepwd = !hidepwd" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidepwd">
+                  <mat-icon>{{hidepwd ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+
+              <mat-form-field class="form-item" >
+                <mat-label>Super key</mat-label>
+                <input matInput  [type]="hidekey ? 'password' : 'text'"  formControlName="admin_secret"  >
+                <button mat-icon-button matSuffix (click)="hidekey = !hidekey" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidekey">
+                  <mat-icon>{{hidekey ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+  
+              </mat-form-field>
+  
+              
+              <button mat-raised-button type="submit" class="submit-button">Sign up</button>
+            </form>
+            
+      <mat-card-actions class="card-actions">
+        <button mat-button matSuffix (click)="login = !login" color="primary" >Login</button>
+      </mat-card-actions>
+  
+      </mat-card>
+  </div>
+  

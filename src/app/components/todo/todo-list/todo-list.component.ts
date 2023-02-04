@@ -2,12 +2,17 @@ import { Component, OnInit } from '@angular/core';
 
 import { trigger, transition, style, animate } from '@angular/animations';
 import { TodoService } from 'src/app/services/todo.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
-  providers: [TodoService],
+  providers: [
+    TodoService,
+    AuthService,
+    
+  ],
   animations: [
     trigger('fade', [
 
@@ -26,7 +31,10 @@ import { TodoService } from 'src/app/services/todo.service';
 export class TodoListComponent implements OnInit {
   todoTitle: string;
 
-  constructor(public todoService : TodoService) { 
+  constructor(
+    public todoService : TodoService,
+    public authService: AuthService
+    ) { 
   }
 
   ngOnInit() {

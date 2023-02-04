@@ -1,10 +1,10 @@
-name: ci/cd
+name: test and deploy
 on: 
   push: 
     branches: [ main ] 
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -13,16 +13,25 @@ jobs:
       - name: Build & Deploy
         uses: actions/setup-node@v3.6.0
       - run: npm install
-      - run: npm run build
-      - name: SCP
-        uses: appleboy/scp-action@v0.0.1
-        with: 
-          host: ${{ HOST }}
-          username: ${{ USERNAME }}
-          password: ${{ PASSWORD}}
+      - run: npm test
+
+  deploy:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: ssh to server
+        uses: fifsky/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
           port: 22
-          source: 'docs/'
-          target: ''
+          command: |
+            cd ~/remote_user/todo-server
+            git pull origin main
+            npm install
+            npm run build
+            
       
 
         

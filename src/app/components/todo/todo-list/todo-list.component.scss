@@ -1,4 +1,14 @@
-.todo-item {
+.flex-expand {
+  flex: 1 1 auto;
+}
+.todo-input {
+    width: 99%;
+    padding: 10px 18px;
+    font-size: 18px;
+    
+  }
+  
+  .todo-item {
     margin-bottom: 12px;
     display: flex;
     align-items: center;
@@ -42,4 +52,34 @@
   .completed {
     text-decoration: line-through;
     color: grey;
+  }
+  
+  .extra-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    border-top: 1px solid lightgrey;
+    padding-top: 14px;
+    margin-bottom: 14px;
+    margin-left: 10px;
+  }
+  
+  button {
+    font-size: 14px;
+    
+    &:hover {
+      color: black;
+      background: transparent;
+    }
+    
+  }
+  
+  // CSS Transitions
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .2s;
+  }
+  
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
