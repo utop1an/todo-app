@@ -5,6 +5,7 @@ import { Todo } from '../interfaces/todo';
 import { catchError } from 'rxjs/operators';
 import { throwError as observableThrowError } from 'rxjs';
 import { Router } from '@angular/router';
+import { transition } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class TodoService {
 
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+ 
   ) { 
     this.getTodos();
   }
@@ -65,7 +67,6 @@ export class TodoService {
     this.anyRemainingModel = this.anyRemaining();
     todo.editing = false;
 
-    console.log(todo)
     this.httpClient.patch(baseUrl+"todo/"+todo.id, {
       title: todo.title,
       completed: todo.completed
@@ -102,7 +103,6 @@ export class TodoService {
       .filter(todo=> todo.completed)
       .map(todo => todo.id)
 
-    console.log(completed)  
     this.httpClient.post(baseUrl+"todo/deleteCompleted", {
       todos: completed
     })
@@ -111,8 +111,20 @@ export class TodoService {
     })
   }
 
-  translate(id:number): void{
-    // call ms/google api to translate
+  translate(): void{
+    const translating: number[] = this.todos
+      .filter(todo=> todo.completed)
+      .map(todo => todo.id)
+
+    this.httpClient.post(baseUrl+"todo/translate", {
+      userId: localStorage.getItem("currentUser")
+    }).subscribe(((res:any)=>{
+      // TODO: ngrx?
+      console.log(res)
+      this.todos = res;
+      
+
+    }))
   }
 
 

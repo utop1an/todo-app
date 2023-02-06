@@ -24,32 +24,29 @@ export class AuthInterceptor implements HttpInterceptor {
               next: HttpHandler): Observable<HttpEvent<any>> {
 
         const idToken = localStorage.getItem("access_token");
-        console.log(idToken)
         let newReq = req;
         if (idToken) {
             const cloned = req.clone({
                 headers: req.headers.set("Authorization",
-                    "Bearer " + idToken)
+                  "Bearer " + idToken)
             });
 
             newReq = cloned;
         }
         return next.handle(newReq).pipe(catchError((error)=>{
             if (error instanceof HttpErrorResponse){
+                this.dialog.open(DialogFail, {
+                    data: {
+                        message: error.error.message
+                    }
+                });
+                this.dialog.afterAllClosed.subscribe(()=>{
+                    if (error.status===401){
+                        this.router.navigate(['/'])
+                    }
+                })
                 
-                if (error.status===401){
-                    this.router.navigate([""])
-                }
-                else {
-                    
-                    this.dialog.open(DialogFail, {
-                        data: {
-                            message: error.error.message
-                        }
-                    });
-                }
             }
-            
             return throwError(()=> error);
         }));
     }
