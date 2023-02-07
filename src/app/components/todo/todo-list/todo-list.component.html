@@ -31,8 +31,11 @@
   </mat-button-toggle-group>
 
   <div class="item-tools">
-    <button  mat-raised-button (click)="todoService.translate()" class="tool" color="primary" style="margin-right: 10px;">
+    <button *ngIf="!todoService.translateClicked" mat-raised-button (click)="todoService.translate()" class="tool" color="primary" style="margin-right: 10px;">
       Translate
+    </button>
+    <button *ngIf="todoService.translateClicked" mat-raised-button (click)="todoService.undoTranslate()" class="tool" color="primary" style="margin-right: 10px;">
+      Undo
     </button>
     <div *ngIf="todoService.atLeastOneCompleted()" style="margin-right: 10px;">
       <button mat-raised-button (click)="todoService.clearCompleted()" color="primary">Clear Completed</button>

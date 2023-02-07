@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,6 +32,11 @@ import { MatSortModule } from '@angular/material/sort'
 import { AdminLoginComponent } from './components/user/admin-login/admin-login.component';
 import { UsersInfoComponent } from './components/user/users-info/users-info.component';
 import { AuthInterceptor, DialogFail } from './interceptors/auth.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { reducers, metaReducers } from './store';
+import { environment } from 'src/environments/environment.dev';
 
 @NgModule({
   declarations: [
@@ -63,7 +68,15 @@ import { AuthInterceptor, DialogFail } from './interceptors/auth.interceptor';
     MatButtonToggleModule,
     MatDialogModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+      autoPause: true,
+    })
+
   ],
   providers: [
     {
@@ -78,4 +91,6 @@ import { AuthInterceptor, DialogFail } from './interceptors/auth.interceptor';
     DialogFail
   ],
 })
-export class AppModule { }
+export class AppModule { 
+
+}

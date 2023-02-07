@@ -1,11 +1,13 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { baseUrl } from 'src/environments/environment.dev';
 import { Todo } from '../interfaces/todo';
-import { catchError } from 'rxjs/operators';
-import { throwError as observableThrowError } from 'rxjs';
 import { Router } from '@angular/router';
-import { transition } from '@angular/animations';
+import { TodosState } from '../store';
+import { select, Store } from '@ngrx/store';
+import { translateTodos, undoTranslateTodos } from '../store/actions/todo.actions';
+import { Observable } from 'rxjs'
+import { selectTodos } from '../store/selectors/todo.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +19,17 @@ export class TodoService {
   anyRemainingModel: boolean = true;
   todos: Todo[] = [];
 
+  translatedTodos: Observable<Todo[]>;
+  translateClicked: boolean = false;
+
   constructor(
     private httpClient: HttpClient,
     private router: Router,
+    private store: Store<TodosState>,
  
   ) { 
     this.getTodos();
+    this.translatedTodos = this.store.pipe(select(selectTodos));
   }
 
 
@@ -119,12 +126,18 @@ export class TodoService {
     this.httpClient.post(baseUrl+"todo/translate", {
       userId: localStorage.getItem("currentUser")
     }).subscribe(((res:any)=>{
-      // TODO: ngrx?
-      console.log(res)
-      this.todos = res;
+      
+
+      this.store.dispatch(translateTodos({todos: res}))
+      this.translateClicked = !this.translateClicked
       
 
     }))
+  }
+
+  undoTranslate(): void{
+    this.translateClicked = !this.translateClicked
+    this.store.dispatch(undoTranslateTodos())
   }
 
 
@@ -133,14 +146,21 @@ export class TodoService {
   }
 
   todosFiltered(): Todo[] {
+    var tmpTodos = this.todos;
+    this.translatedTodos.subscribe((data: Todo[])=> {
+      if (data.length != 0) {
+        tmpTodos = data;
+      }
+    })
+
     if (this.filter === 'all') {
-      return this.todos;
+      return tmpTodos;
     } else if (this.filter === 'active') {
-      return this.todos.filter(todo => !todo.completed);
+      return tmpTodos.filter(todo => !todo.completed);
     } else if (this.filter === 'completed') {
-      return this.todos.filter(todo => todo.completed);
+      return tmpTodos.filter(todo => todo.completed);
     }
 
-    return this.todos;
+    return tmpTodos;
   }
 }
