@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { baseUrl } from 'src/environments/environment.dev';
+import { baseUrl } from 'src/environments/environment';
 import { Todo } from '../interfaces/todo';
 import { Router } from '@angular/router';
 import { TodosState } from '../store';

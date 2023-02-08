@@ -6,7 +6,7 @@ import { Todo } from '../interfaces/todo';
 import { TodoService } from './todo.service';
 import { TodosState } from '../store';
 import { Store, StoreModule } from '@ngrx/store';
-import { baseUrl } from 'src/environments/environment.dev';
+import { baseUrl } from 'src/environments/environment';
 
 describe('TodoService', () => {
   let service: TodoService;
@@ -57,6 +57,5 @@ describe('TodoService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('')
 
 })

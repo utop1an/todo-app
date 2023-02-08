@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       
-      - name: Build & Deploy
+      - name: Setup node
         uses: actions/setup-node@v3.6.0
       - run: npm install
       - run: npm test
@@ -19,18 +19,23 @@ jobs:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
-      - name: ssh to server
-        uses: fifsky/ssh-action@master
+      - name: auth
+        uses: 'google-github-actions/auth@v0'
         with:
-          host: ${{ secrets.HOST }}
-          user: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          port: 22
+          credentials_json: ${{ secrets.CREDENTIALS }}
+      - name: ssh to server
+        uses: 'google-github-actions/ssh-compute@v0'
+        with:
+          instance_name: 'todo-server'
+          user: vfqq1066
+          zone: 'australia-southeast1-b'
+          ssh_private_key: '${{ secrets.GCP_SSH_PRIVATE_KEY }}'
           command: |
-            cd ~/remote_user/todo-server
+            cd /home/vfqq1066/todo/todo-app
             git pull origin main
             npm install
             npm run build
+            sudo cp -r /home/vfqq1066/todo/todo-app/dist/todo-app/* /var/www/html/
             
       
 

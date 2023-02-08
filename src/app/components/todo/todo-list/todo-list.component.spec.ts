@@ -18,7 +18,6 @@ describe('TodoListComponent', () => {
         provide: TodoService,
         useValue: jasmine.createSpyObj([''])
       } ],
-      // teardown: { destroyAfterEach: false },
     })
     .compileComponents();
 
