@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppComponent } from 'src/app/app.component';
+import { AppModule } from 'src/app/app.module';
 
 import { UsersInfoComponent } from './users-info.component';
 
@@ -8,7 +11,9 @@ describe('UsersInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UsersInfoComponent ]
+      imports: [HttpClientTestingModule, AppModule],
+      declarations: [ UsersInfoComponent, AppComponent ],
+      providers: []
     })
     .compileComponents();
 

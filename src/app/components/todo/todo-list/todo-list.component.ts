@@ -1,12 +1,8 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 
 import { trigger, transition, style, animate } from '@angular/animations';
 import { TodoService } from 'src/app/services/todo.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Store } from '@ngrx/store';
-
-import { fromEvent } from 'rxjs';
-import { TodosState } from 'src/app/store';
 
 @Component({
   selector: 'todo-list',
@@ -39,8 +35,7 @@ export class TodoListComponent implements OnInit {
   constructor(
     public todoService : TodoService,
     public authService: AuthService,
-    private store: Store<TodosState>,
-
+  
     ) { 
   }
 
@@ -53,8 +48,6 @@ export class TodoListComponent implements OnInit {
     this.todoService.addTodo(this.todoTitle);
     this.todoTitle = '';
   }
-
-
 
   
 

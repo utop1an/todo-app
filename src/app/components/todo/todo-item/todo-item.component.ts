@@ -8,11 +8,10 @@ import { TodoService } from 'src/app/services/todo.service';
   styleUrls: ['./todo-item.component.scss']
 })
 export class TodoItemComponent implements OnInit {
-  @Input( ) todo : Todo;
+  @Input() todo : Todo;
   constructor(public todoService : TodoService) { 
   }
 
   ngOnInit() {
-      
   }
 }

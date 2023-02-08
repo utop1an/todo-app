@@ -34,7 +34,6 @@ export class TodoService {
 
 
   getTodos() {
-
     this.httpClient.get(baseUrl+'todo/user' + localStorage.getItem("currentUser"))
     .subscribe((res: any)=>{
       this.todos=res;
