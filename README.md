@@ -86,7 +86,7 @@ systemctl restart nginx
 
 - Todos can be translated via Google Translate API, the translation and undo translation is built with Ngrx 
 
-- Admin could monitor user behaviour histories, including login, and creation, translation, completion of todos
+- Admin could monitor user behaviour histories, including login, and creation, translation, completion of todos (use super key: `V5|zrtR{?d}sF(j%Q>^<` to create admin)
 
 
 
