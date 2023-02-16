@@ -8,7 +8,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './components/todo/todo-list/todo-list.component';
-import { TodoItemComponent } from './components/todo/todo-item/todo-item.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 
 import { DialogSuccess } from './components/user/user-login/user-login.component';
@@ -34,15 +33,14 @@ import { UsersInfoComponent } from './components/user/users-info/users-info.comp
 import { AuthInterceptor, DialogFail } from './interceptors/auth.interceptor';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
-import { reducers, metaReducers } from './store';
+import { reducers, } from './store';
 import { environment } from 'src/environments/environment.dev';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
-    TodoItemComponent,
+    
     UserLoginComponent,
     AdminLoginComponent,
     UsersInfoComponent,

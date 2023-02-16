@@ -12,10 +12,34 @@
   </button>
 </mat-form-field>
 
-<todo-item 
-    *ngFor="let todo of todoService.todosFiltered()"
-    @fade
-    [todo]="todo"></todo-item>
+
+
+  <div class="todo-item" 
+  *ngFor="let todo of todosFiltered()"
+  @fade>
+    <div class="todo-item-left">
+      <mat-checkbox type="checkbox" [(ngModel)]="todo.completed" (change)="doneEdit(todo)" color="primary"> </mat-checkbox>
+      <div *ngIf="!todo.editing; else editingTodo" class="todo-item-label" [ngClass]="{ 'completed' : todo.completed }" (dblclick)="editTodo(todo)">{{ todo.title }}</div>
+      
+      
+      <ng-template #editingTodo>
+        <input matInput type="text" class="todo-item-edit" [(ngModel)]="todo.title" (blur)="doneEdit(todo)" (keyup.enter)="doneEdit(todo)" (keyup.esc)="cancelEdit(todo)"autofocus>
+        <button *ngIf="todo.title" matSuffix mat-icon-button (click)="doneEdit(todo)" style="margin-right: 10px;" color="primary">
+          <mat-icon>done_outline</mat-icon>
+        </button>
+
+      </ng-template>
+    </div>
+    <!-- <div class="remove-item" (click)="todoService.deleteTodo(todo.id)">
+      &times;
+    </div> -->
+    <div class="item-tools">
+      <button  mat-icon-button (click)="deleteTodo(todo.id)" class="tool" color="primary">
+        <mat-icon>{{'delete'}}</mat-icon>
+  
+      </button>
+    </div>
+  </div>
 
 <!-- <div class="extra-container">
   <div><label><input type="checkbox" (change)="checkAllTodos()"  [(ngModel)]="!anyRemainingModel"> Check All</label></div>
@@ -24,21 +48,21 @@
 
 <div class="extra-container">
   
-  <mat-button-toggle-group appearance="legacy" [(ngModel)]="todoService.filter">
+  <mat-button-toggle-group appearance="legacy" [(ngModel)]="filter">
     <mat-button-toggle value="all">All</mat-button-toggle>
     <mat-button-toggle value="active">Active</mat-button-toggle>
     <mat-button-toggle value="completed">Completed</mat-button-toggle>
   </mat-button-toggle-group>
 
   <div class="item-tools">
-    <button *ngIf="!todoService.translateClicked" mat-raised-button (click)="todoService.translate()" class="tool" color="primary" style="margin-right: 10px;">
+    <button *ngIf="!translateClicked && todos.length != 0" mat-raised-button (click)="translate()" class="tool" color="primary" style="margin-right: 10px;">
       Translate
     </button>
-    <button *ngIf="todoService.translateClicked" mat-raised-button (click)="todoService.undoTranslate()" class="tool" color="primary" style="margin-right: 10px;">
+    <button *ngIf="translateClicked" mat-raised-button (click)="undoTranslate()" class="tool" color="primary" style="margin-right: 10px;">
       Undo
     </button>
-    <div *ngIf="todoService.atLeastOneCompleted()" style="margin-right: 10px;">
-      <button mat-raised-button (click)="todoService.clearCompleted()" color="primary">Clear Completed</button>
+    <div *ngIf="atLeastOneCompleted()" style="margin-right: 10px;">
+      <button mat-raised-button (click)="clearCompleted()" color="primary">Clear Completed</button>
     </div>
   </div>
 
