@@ -29,12 +29,12 @@ jobs:
           user: vfqq1066
           zone: 'australia-southeast1-b'
           ssh_private_key: '${{ secrets.GCP_SSH_PRIVATE_KEY }}'
-          command: '|
+          command: |-
             cd /home/vfqq1066/todo/todo-app
             git pull origin main
             npm -v
             npm install
-            npm run build'
+            npm run build
             
       
 
