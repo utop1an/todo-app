@@ -32,7 +32,7 @@ jobs:
           command: |
             cd /home/vfqq1066/todo/todo-app
             git pull origin main
-            mkdir test
+            npm -v
             npm install
             npm run build
             
