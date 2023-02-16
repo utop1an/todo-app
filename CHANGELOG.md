@@ -3,6 +3,8 @@ This project is based on the [Angular Todo App](https://www.youtube.com/watch?v=
 
 ##### New Features
 
+*  add more docs (34b1f1d9)
+*  add doc and changelog (881fa350)
 *  add unit tests (d3a93988)
 *  unit test, initialization (dcb08f39)
 *  ngrx for translate button (0a4c9118)
@@ -14,12 +16,10 @@ This project is based on the [Angular Todo App](https://www.youtube.com/watch?v=
 ##### Bug Fixes
 
 *  update main.yaml (aee3d77e)
-*  update main.yaml (98cf396e)
 *  re-struct todo service and todo list component (ea0ba78e)
 *  update for CORS (c8811e69)
-*  update for CORS (18be90a4)
 *  update CICD to fit google cloud (0a2b5e25)
-*  update CICD to fit google cloud (f3ad81f8)
 *  modify gitignore (c996ce70)
+
 
 
