@@ -78,3 +78,15 @@ server {
 systemctl restart nginx
 ```
 - Now, the Todo-App is accessible via http
+
+## Online Todo App
+- Visit [here](http://35.189.33.138) for the online Angular Todo-App, consuming RestFul APIs from a NestJS + PostgreSql server. 
+
+- User need to sign up and login first, to manipulate the todos
+
+- Todos can be translated via Google Translate API, the translation and undo translation is built with Ngrx 
+
+- Admin could monitor user behaviour histories, including login, and creation, translation, completion of todos
+
+
+

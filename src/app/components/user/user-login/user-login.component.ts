@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService} from '@auth0/angular-jwt'
-import {MatDialog, MatDialogRef, } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 
 @Component({
@@ -91,6 +91,8 @@ export class DialogSuccess {
   constructor(
     public dialogRef: MatDialogRef<DialogSuccess>,
   ){}
+
+
   close() {
     this.dialogRef.close();
 

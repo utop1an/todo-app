@@ -3,14 +3,15 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService} from '@auth0/angular-jwt'
-import {MatDialog, MatDialogRef, } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogSuccess } from '../user-login/user-login.component';
 
 @Component({
   selector: 'admin-login',
   templateUrl: './admin-login.component.html',
   styleUrls: ['./admin-login.component.scss']
 })
-export class AdminLoginComponent {
+export class AdminLoginComponent implements OnInit {
 
   constructor(
     private authSerive: AuthService,
@@ -90,18 +91,18 @@ export class AdminLoginComponent {
 
 }
 
-@Component({
-  selector: 'dialog-success',
-  templateUrl: '../dialog.success.html',
-  // styleUrls: ['./user-login.component.scss'],
-})
-export class DialogSuccess {
+// @Component({
+//   selector: 'dialog-success',
+//   templateUrl: '../dialog.success.html',
+//   // styleUrls: ['./user-login.component.scss'],
+// })
+// export class DialogSuccess {
 
-  constructor(
-    public dialogRef: MatDialogRef<DialogSuccess>,
-  ){}
-  close() {
-    this.dialogRef.close();
+//   constructor(
+//     public dialogRef: MatDialogRef<DialogSuccess>,
+//   ){}
+//   close() {
+//     this.dialogRef.close();
 
-  }
-}
+//   }
+// }
