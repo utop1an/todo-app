@@ -75,7 +75,8 @@ export class TodoListComponent implements OnInit {
         id: res.id,
         title: res.title,
         completed: res.completed,
-        editing: false
+        editing: false,
+        userId: res.userId
       })
     });
     this.todoTitle = '';
@@ -108,7 +109,7 @@ export class TodoListComponent implements OnInit {
 
   deleteTodo(id: number) {
     this.todoService.deleteTodo(id)
-    .subscribe(res=>{
+    .subscribe(()=>{
       this.todos = this.todos.filter(todo => todo.id !== id);
     })
   }

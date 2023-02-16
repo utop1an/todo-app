@@ -14,13 +14,11 @@ export class AuthService {
     private router: Router) { }
 
   
-
   login(data: any): Observable<any>{
     return this.httpClient.post(`${baseUrl}auth/login`, data)
   }
 
   register(data: any): Observable<any>{
-    console.log(data)
     return this.httpClient.post(`${baseUrl}auth/register`, data)
   }
 

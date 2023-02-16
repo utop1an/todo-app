@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: '', component: UserLoginComponent},
   {path: 'todo-list', component: TodoListComponent, canActivate: [AuthGuard]},
   {path: 'admin-login', component: AdminLoginComponent},
-  {path: 'users-info', component: UsersInfoComponent},
+  {path: 'users-info', component: UsersInfoComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
