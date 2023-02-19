@@ -3,6 +3,7 @@ This project is based on the [Angular Todo App](https://www.youtube.com/watch?v=
 
 ##### New Features
 
+*  add more unit tests and ui tests (1b083d2a)
 *  add more docs (34b1f1d9)
 *  add doc and changelog (881fa350)
 *  add unit tests (d3a93988)
@@ -15,6 +16,8 @@ This project is based on the [Angular Todo App](https://www.youtube.com/watch?v=
 
 ##### Bug Fixes
 
+*  not calling update for todos (4f185e08)
+*  small fixes (25937672)
 *  update main.yaml (aee3d77e)
 *  re-struct todo service and todo list component (ea0ba78e)
 *  update for CORS (c8811e69)
