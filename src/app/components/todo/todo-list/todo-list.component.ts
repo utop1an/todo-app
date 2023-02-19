@@ -97,7 +97,7 @@ export class TodoListComponent implements OnInit {
     this.anyRemainingModel = this.anyRemaining();
     todo.editing = false;
 
-    this.todoService.doneEdit(todo);
+    this.todoService.doneEdit(todo).subscribe();
   }
 
 
