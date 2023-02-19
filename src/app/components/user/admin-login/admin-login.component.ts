@@ -77,10 +77,7 @@ export class AdminLoginComponent implements OnInit {
           this.dialog.afterAllClosed.subscribe(()=>{
             window.location.reload();
           })
-
-          
         }
-
       })
     }
   }
@@ -91,18 +88,3 @@ export class AdminLoginComponent implements OnInit {
 
 }
 
-// @Component({
-//   selector: 'dialog-success',
-//   templateUrl: '../dialog.success.html',
-//   // styleUrls: ['./user-login.component.scss'],
-// })
-// export class DialogSuccess {
-
-//   constructor(
-//     public dialogRef: MatDialogRef<DialogSuccess>,
-//   ){}
-//   close() {
-//     this.dialogRef.close();
-
-//   }
-// }

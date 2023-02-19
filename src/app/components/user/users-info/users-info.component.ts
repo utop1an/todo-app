@@ -44,7 +44,6 @@ export class UsersInfoComponent implements AfterViewInit {
       this.dataSource = new MatTableDataSource(this.usersInfo);
       this.dataSource.sort = this.sort;
     }))
-    console.log(this.usersInfo)
   }
 
   
